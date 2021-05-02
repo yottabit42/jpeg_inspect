@@ -55,7 +55,7 @@ echo "Inspecting files..."
 for f in $( \
   find "${1}" -iname "*.jpg" -print0 | \
     xargs -0 jpeginfo -c -i -v | \
-    pv -l | \
+    pv -alt | \
     grep -e WARNING -e ERROR | \
     grep -v 'starts with 0x00 0x00' | \
     grep -iv 'burst' | \
