@@ -22,9 +22,9 @@ echo "For each file passing through the filter list, the filename will be"
 echo "printed, all thumbnails extracted and written into the same directory"
 echo "as the source file, and ristretto will display the original file."
 echo
-echo "While ristretto is open, you can optionally <DEL> the original, <RIGHT>"
-echo "to see the created thumbnail(s), and <CTRL>+<Q> to quit Ristretto (which"
-echo "will proceed to process the next file)."
+echo "While ristretto is open, you can optionally <SHIFT>+<DEL> the original,"
+echo "<RIGHT> to see the created thumbnail(s), and <CTRL>+<Q> to quit" 
+echo "Ristretto (which will proceed to the next file)."
 echo
 echo "If you want to stop at any time, use <CTRL>+<C> on this script,"
 echo "including now."
@@ -63,7 +63,7 @@ for f in $( \
     grep -Poe '.*.jpg'); do
   echo "${f}"
   exiftool -a -b -W "%d%f_%t%-c.%s" -preview:all "${f}"
-  ristretto "${f}"
+  ristretto "${f}" || true  # Do not abort script on ristretto segfault.
 done
 
 echo "Finished."
