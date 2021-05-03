@@ -58,6 +58,7 @@ for f in $( \
     pv -alt | \
     grep -e WARNING -e ERROR | \
     grep -v 'starts with 0x00 0x00' | \
+    grep -v 'starts with 0x89 0x50' | \
     grep -iv 'burst' | \
     grep -Poe '.*.jpg'); do
   echo "${f}"
@@ -66,3 +67,4 @@ for f in $( \
 done
 
 echo "Finished."
+echo
